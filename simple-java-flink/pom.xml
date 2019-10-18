@@ -9,18 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.alsace</groupId>
-    <artifactId>simple-java</artifactId>
+    <artifactId>simple-java-flink</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>simple-java</name>
-    <packaging>pom</packaging>
+    <name>simple-java-flink</name>
     <description>Demo project for Spring Boot</description>
-
-    <modules>
-        <module>simple-java-nio</module>
-        <module>simple-java-design-mode</module>
-        <module>simple-java-juc</module>
-        <module>simple-java-storm</module>
-    </modules>
 
     <properties>
         <java.version>1.8</java.version>
