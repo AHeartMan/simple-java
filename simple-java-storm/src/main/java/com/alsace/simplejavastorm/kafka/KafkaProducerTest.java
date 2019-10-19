@@ -38,7 +38,7 @@ public class KafkaProducerTest implements Runnable{
     public void run() {
         int msgNo = 1;
         try {
-            for (;;){
+            for (int i = 0; i <= 1000; i++){
                 String msg = "这是第" + msgNo + "条数据";
                 producer.send(new ProducerRecord<>(topic, "msg", msg));
                 msgNo++;
