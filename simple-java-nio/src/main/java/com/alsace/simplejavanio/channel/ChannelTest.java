@@ -45,5 +45,5 @@ package com.alsace.simplejavanio.channel;
  * @since 2019/10/20 0020
  */
 public class ChannelTest {
-    
+
 }
