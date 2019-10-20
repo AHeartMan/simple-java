@@ -1,6 +1,8 @@
 package com.alsace.simplejavanio.buffer;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.LongBuffer;
 
 /**
  * <p>
@@ -41,10 +43,11 @@ import java.nio.ByteBuffer;
  */
 public class BufferTest {
 
-    private String str = "hello word";
+    private static String str = "hello word";
 
     public static void main(String[] args) {
         //分配一个指定大小的缓冲区
+        LongBuffer longBuffer = LongBuffer.allocate(1024);
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         System.out.println(buffer.capacity());
         System.out.println(buffer.limit());
@@ -52,15 +55,23 @@ public class BufferTest {
         System.out.println(buffer.position());
 
         //利用put()存放数据
-
-
+        buffer.put(str.getBytes());
 
         //切换读模式
+        buffer.flip();
 
         //利用get()读取数据
+        byte [] bytes = new byte[1024];
+        buffer.get(bytes, 0, buffer.limit());
+        System.out.println(new String(bytes));
+
 
         //rewind()可重复读
+        Buffer rewind = buffer.rewind();
+        System.out.println(rewind);
 
         //清空缓冲区，但是缓冲区中的数据依然存在，只是处于被遗忘的状态
+        Buffer clear = buffer.clear();
+        System.out.println(clear);
     }
 }
