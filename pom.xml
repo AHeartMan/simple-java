@@ -20,6 +20,11 @@
         <module>simple-java-design-mode</module>
         <module>simple-java-juc</module>
         <module>simple-java-storm</module>
+        <module>simple-java-flink</module>
+        <module>simple-java-java8</module>
+        <module>simple-java-netty</module>
+        <module>simple-java-rewrite-source</module>
+        <module>simple-java-spark</module>
     </modules>
 
     <properties>
