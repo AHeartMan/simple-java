@@ -2,10 +2,17 @@ package com.alsace.simplejavanio.channel;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CharsetEncoder;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Set;
+import java.util.SortedMap;
 
 /**
  * <p>
@@ -62,6 +69,10 @@ public class ChannelTest {
         channel.test3();
         System.out.println("----------------------");
         channel.test4();
+        System.out.println("----------------------");
+        channel.test5();
+        System.out.println("----------------------");
+        channel.test6();
     }
 
     /**
@@ -188,5 +199,40 @@ public class ChannelTest {
 
         outChannel.close();
         inChannel.close();
+    }
+
+    /**
+     * 获取所有字符集
+     */
+    public void test5(){
+        SortedMap<String, Charset> charmaps = Charset.availableCharsets();
+        Set<String> strings = charmaps.keySet();
+        for (String key : strings) {
+            System.out.println(key + " : " + charmaps.get(key));
+        }
+    }
+
+    public void test6() throws CharacterCodingException {
+        //获取编码器
+        Charset charset = Charset.forName("GBK");
+        CharsetEncoder encoder = charset.newEncoder();
+
+        //获取解码器
+        CharsetDecoder decoder = charset.newDecoder();
+
+        CharBuffer buffer = CharBuffer.allocate(1024);
+        buffer.put("hello world");
+        buffer.flip();
+
+        //编码
+        ByteBuffer encode = encoder.encode(buffer);
+        for (int i = 0; i < encode.limit(); i++) {
+            System.out.println(encode.get());
+        }
+
+        //解码
+        encode.flip();
+        CharBuffer decode = decoder.decode(encode);
+        System.out.println(decode.toString());
     }
 }
