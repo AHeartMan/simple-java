@@ -1,6 +1,5 @@
 package com.alsace.simplejavanio.blockingnio;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -40,7 +39,7 @@ public class TestBlockingNio {
     public void server() throws Exception {
         //获取通道
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        FileChannel fileChannel = FileChannel.open(Paths.get("D:/work_space/simple-java/simple-java-nio/pic1.jpg"), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+        FileChannel fileChannel = FileChannel.open(Paths.get("D:/work_space/simple-java/simple-java-nio/pic7.jpg"), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
 
         //绑定端口
         serverSocketChannel.bind(new InetSocketAddress(8899));
@@ -68,4 +67,41 @@ public class TestBlockingNio {
         fileChannel.close();
         serverSocketChannel.close();
     }
+
+    public void client() throws Exception {
+        //获取通道
+        SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 8899));
+        FileChannel fileChannel = FileChannel.open(Paths.get("D:/work_space/simple-java/simple-java-nio/pic1.jpg"), StandardOpenOption.READ);
+
+        //获取指定大小的缓冲区
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+
+        //读取本地文件，发送到服务端
+        while (fileChannel.read(buffer) != -1){
+            buffer.flip();
+            socketChannel.write(buffer);
+            buffer.clear();
+        }
+
+        //在不关闭通道的情况下关闭连接以进行写入
+        socketChannel.shutdownOutput();
+
+        //接受响应
+        int len;
+        while ((len = socketChannel.read(buffer)) != -1){
+            buffer.flip();
+            System.out.println(new String(buffer.array(), 0, len));
+            buffer.clear();
+        }
+
+        //关闭通道
+        fileChannel.close();
+        socketChannel.close();
+    }
+
+    public static void main(String[] args) throws Exception {
+        TestBlockingNio blockingNio = new TestBlockingNio();
+        blockingNio.server();
+    }
+
 }
