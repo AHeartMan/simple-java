@@ -106,8 +106,9 @@ public class TestEmployee {
     //获取所有员工姓名
     public void test6(){
         emps.stream()
-                .map(Employee::getName)
+                .map(Employee::getAge)
                 .limit(5)
+                .sorted()
                 .forEach(System.out::println);
     }
 }
