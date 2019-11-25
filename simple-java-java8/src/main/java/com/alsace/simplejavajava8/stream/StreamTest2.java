@@ -81,4 +81,21 @@ public class StreamTest2 {
         }
         return list.stream();
     }
+
+    /**
+     * 排序
+     * sorted() --- 自然排序(Comparable)
+     * sorted(Comparator com) --- 定制排序(Comparator)
+     */
+    public void testSorted(){
+        emps.stream()
+                .sorted((e1, e2) -> {
+                    if (e1.getAge() == e2.getAge()){
+                        return e1.getName().compareTo(e2.getName());
+                    }else {
+                        return Integer.compare(e1.getAge(), e2.getAge());
+                    }
+                })
+                .forEach(System.out::println);
+    }
 }
