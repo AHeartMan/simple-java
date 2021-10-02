@@ -7,9 +7,9 @@ import java.nio.channels.Pipe;
 /**
  * <p>
  * 管道：
- *  通信方式
- *      sink写数据
- *      source读数据
+ * 通信方式
+ * sink写数据
+ * source读数据
  * </p>
  *
  * @author sangmingming

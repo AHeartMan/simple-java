@@ -16,8 +16,8 @@ public class CashContext {
 
     private volatile Strategy strategy;
 
-    public synchronized Strategy getInstance(String type){
-        switch (type){
+    public synchronized Strategy getInstance(String type) {
+        switch (type) {
             case "正常收费":
                 strategy = new NormalStrategy();
                 break;
@@ -33,7 +33,7 @@ public class CashContext {
         return strategy;
     }
 
-    public double getResult(double money){
+    public double getResult(double money) {
         try {
             return strategy.getResult(money);
         } catch (Exception e) {

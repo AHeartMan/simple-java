@@ -50,11 +50,11 @@ public class Server {
     }
 
     public void listen() throws IOException {
-        while (true){
+        while (true) {
             selector.select();
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             Iterator<SelectionKey> iterator = selectionKeys.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 SelectionKey selectionKey = iterator.next();
                 handle(selectionKey);
                 selectionKeys.clear();
@@ -63,17 +63,17 @@ public class Server {
     }
 
     private void handle(SelectionKey selectionKey) throws IOException {
-        if (selectionKey.isAcceptable()){
+        if (selectionKey.isAcceptable()) {
             ServerSocketChannel serverSocketChannel = (ServerSocketChannel) selectionKey.channel();
             SocketChannel client = serverSocketChannel.accept();
             client.configureBlocking(false);
             client.register(selector, SelectionKey.OP_READ);
             clientMap.put(getSocketName(client), client);
-        }else if (selectionKey.isReadable()){
+        } else if (selectionKey.isReadable()) {
             SocketChannel client = (SocketChannel) selectionKey.channel();
             inBuffer.clear();
             int len = client.read(inBuffer);
-            if (len > 0){
+            if (len > 0) {
                 inBuffer.flip();
                 String msg = String.valueOf(charset.decode(inBuffer));
                 System.out.println("receive msg : " + msg);
@@ -83,7 +83,7 @@ public class Server {
     }
 
     private void dispatch(SocketChannel client, String message) throws IOException {
-        if (!clientMap.isEmpty()){
+        if (!clientMap.isEmpty()) {
             for (Map.Entry<String, SocketChannel> entry : clientMap.entrySet()) {
                 SocketChannel channel = entry.getValue();
                 outBuffer.clear();
@@ -94,7 +94,7 @@ public class Server {
         }
     }
 
-    private String getSocketName(SocketChannel client){
+    private String getSocketName(SocketChannel client) {
         Socket socket = client.socket();
         System.out.println(socket.getInetAddress());
         return "[" + socket.getInetAddress().toString().substring(1) + ":" + Integer.toHexString(client.hashCode()) + "]";

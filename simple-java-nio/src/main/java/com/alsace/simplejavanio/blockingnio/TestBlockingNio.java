@@ -11,19 +11,19 @@ import java.nio.file.StandardOpenOption;
 /**
  * <p>
  * 使用nio完成网络通信的3大核心
- *  1.通道（Channel）：负责连接
- *      java.nio.channels.Channel 接口：
- *          |--SelectableChannel
- *              |--SocketChannel
- *              |--ServerSocketChannel
- *              |--DatagramChannel
- *
- *              |--Pipe.SinkChannel
- *              |--Pipe.SourceChannel
- *
- *  2.缓冲区（Buffer）：负责数据存取
- *
- *  3.选择器（Selector）：是SelectableChannel的多路复用器，用于监控SelectableChannel的IO状况
+ * 1.通道（Channel）：负责连接
+ * java.nio.channels.Channel 接口：
+ * |--SelectableChannel
+ * |--SocketChannel
+ * |--ServerSocketChannel
+ * |--DatagramChannel
+ * <p>
+ * |--Pipe.SinkChannel
+ * |--Pipe.SourceChannel
+ * <p>
+ * 2.缓冲区（Buffer）：负责数据存取
+ * <p>
+ * 3.选择器（Selector）：是SelectableChannel的多路复用器，用于监控SelectableChannel的IO状况
  *
  * </p>
  *
@@ -34,6 +34,7 @@ public class TestBlockingNio {
 
     /**
      * 服务端
+     *
      * @throws Exception
      */
     public void server() throws Exception {
@@ -51,7 +52,7 @@ public class TestBlockingNio {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
 
         //接受数据
-        while (socketChannel.read(buffer) != -1){
+        while (socketChannel.read(buffer) != -1) {
             buffer.flip();
             fileChannel.write(buffer);
             buffer.clear();
@@ -77,7 +78,7 @@ public class TestBlockingNio {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
 
         //读取本地文件，发送到服务端
-        while (fileChannel.read(buffer) != -1){
+        while (fileChannel.read(buffer) != -1) {
             buffer.flip();
             socketChannel.write(buffer);
             buffer.clear();
@@ -88,7 +89,7 @@ public class TestBlockingNio {
 
         //接受响应
         int len;
-        while ((len = socketChannel.read(buffer)) != -1){
+        while ((len = socketChannel.read(buffer)) != -1) {
             buffer.flip();
             System.out.println(new String(buffer.array(), 0, len));
             buffer.clear();

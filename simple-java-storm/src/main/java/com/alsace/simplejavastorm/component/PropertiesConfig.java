@@ -29,7 +29,8 @@ public class PropertiesConfig {
 
     /**
      * 获取topicName
-     * @return  topicName
+     *
+     * @return topicName
      */
     public String getTopicName() {
         return topicName;
@@ -37,7 +38,8 @@ public class PropertiesConfig {
 
     /**
      * 获取servers
-     * @return  servers
+     *
+     * @return servers
      */
     public String getServers() {
         return servers;
@@ -45,7 +47,8 @@ public class PropertiesConfig {
 
     /**
      * 获取maxPollRecords
-     * @return  maxPollRecords
+     *
+     * @return maxPollRecords
      */
     public int getMaxPollRecords() {
         return maxPollRecords;
@@ -53,7 +56,8 @@ public class PropertiesConfig {
 
     /**
      * 获取commitRule
-     * @return  commitRule
+     *
+     * @return commitRule
      */
     public String getCommitRule() {
         return commitRule;
@@ -61,7 +65,8 @@ public class PropertiesConfig {
 
     /**
      * 获取autoCommit
-     * @return  autoCommit
+     *
+     * @return autoCommit
      */
     public String getAutoCommit() {
         return autoCommit;
@@ -69,7 +74,8 @@ public class PropertiesConfig {
 
     /**
      * 获取groupId
-     * @return  groupId
+     *
+     * @return groupId
      */
     public String getGroupId() {
         return groupId;

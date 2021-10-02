@@ -26,14 +26,14 @@ public class ForkJoinTest extends RecursiveTask<Long> {
     protected Long compute() {
         long lenth = end - start;
 
-        if (lenth <= THRESHOLD){
+        if (lenth <= THRESHOLD) {
             long sum = 0;
-            for (long i = start; i <= end; i++){
+            for (long i = start; i <= end; i++) {
                 sum += i;
             }
             return sum;
-        }else {
-            long middle = (start + end)/2;
+        } else {
+            long middle = (start + end) / 2;
             ForkJoinTest left = new ForkJoinTest(start, middle);
             left.fork();
             ForkJoinTest right = new ForkJoinTest(middle + 1, end);

@@ -29,14 +29,14 @@ public class Client {
 
         //发送数据到服务端
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()){
+        while (scanner.hasNext()) {
             String str = scanner.nextLine();
             buffer.put((new Date().toString() + "\n" + str).getBytes());
             buffer.flip();
             socketChannel.write(buffer);
             buffer.clear();
 
-            if ("88".equals(str)){
+            if ("88".equals(str)) {
                 break;
             }
         }

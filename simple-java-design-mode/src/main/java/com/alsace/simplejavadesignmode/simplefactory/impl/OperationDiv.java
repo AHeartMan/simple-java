@@ -14,7 +14,7 @@ public class OperationDiv extends BaseOperation {
 
     @Override
     public double getResult() throws Exception {
-        if (numB == 0){
+        if (numB == 0) {
             throw new Exception("除数不能为 0");
         }
         return numA / numB;

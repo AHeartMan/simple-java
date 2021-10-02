@@ -21,7 +21,7 @@ public class Topology {
 
     private static final Logger logger = LoggerFactory.getLogger(Topology.class);
 
-    public  void runStorm(String[] args) {
+    public void runStorm(String[] args) {
         // 定义一个拓扑
         TopologyBuilder builder = new TopologyBuilder();
         // 设置1个Executeor(线程)，默认一个
@@ -47,7 +47,7 @@ public class Topology {
                 cluster.submitTopology("Topology", conf, builder.createTopology());
             }
         } catch (Exception e) {
-            logger.error("storm启动失败!程序退出!",e);
+            logger.error("storm启动失败!程序退出!", e);
             System.exit(1);
         }
         logger.info("storm启动成功...");

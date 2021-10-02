@@ -40,13 +40,13 @@ public class Spout extends BaseRichSpout {
 
     @Override
     public void nextTuple() {
-        for (;;){
+        for (; ; ) {
             msgList = consumer.poll(100);
-            for (ConsumerRecord record : msgList){
+            for (ConsumerRecord record : msgList) {
                 Object value = record.value();
                 System.out.println(value);
             }
-            if (msgList.count() >= 10){
+            if (msgList.count() >= 10) {
                 collector.emit(new Values(msgList));
             }
         }
@@ -60,7 +60,7 @@ public class Spout extends BaseRichSpout {
     /**
      * 初始化kafka配置
      */
-    private void kafkaInit(){
+    private void kafkaInit() {
         Properties props = new Properties();
         props.put("bootstrap.servers", properties.getServers());
         props.put("max.poll.records", properties.getMaxPollRecords());

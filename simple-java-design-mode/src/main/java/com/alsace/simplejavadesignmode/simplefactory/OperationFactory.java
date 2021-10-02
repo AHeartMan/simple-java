@@ -15,9 +15,9 @@ import com.alsace.simplejavadesignmode.simplefactory.impl.OperationSub;
  */
 class OperationFactory {
 
-     static BaseOperation createOperation(String operate){
-         BaseOperation oper = null;
-        switch (operate){
+    static BaseOperation createOperation(String operate) {
+        BaseOperation oper = null;
+        switch (operate) {
             case "+":
                 oper = new OperationAdd();
                 break;

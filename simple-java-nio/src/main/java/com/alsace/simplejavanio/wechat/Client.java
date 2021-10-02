@@ -41,7 +41,7 @@ public class Client {
         socketChannel.register(selector, SelectionKey.OP_CONNECT);
         socketChannel.connect(address);
 
-        while (true){
+        while (true) {
             selector.select();
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             selectionKeys.forEach(selectionKey -> {
@@ -56,13 +56,13 @@ public class Client {
     }
 
     private void handle(SelectionKey selectionKey) throws IOException {
-        if (selectionKey.isConnectable()){
+        if (selectionKey.isConnectable()) {
             SocketChannel client = (SocketChannel) selectionKey.channel();
-            if (client.isConnectionPending()){
+            if (client.isConnectionPending()) {
                 client.finishConnect();
                 System.out.println("连接成功");
                 new Thread(() -> {
-                    while (true){
+                    while (true) {
                         inBuffer.clear();
                         Scanner scanner = new Scanner(System.in);
                         String msg = scanner.nextLine();
@@ -78,11 +78,11 @@ public class Client {
 
             }
             client.register(selector, SelectionKey.OP_READ);
-        }else if (selectionKey.isReadable()){
+        } else if (selectionKey.isReadable()) {
             SocketChannel client = (SocketChannel) selectionKey.channel();
             outBuffer.clear();
             int len = client.read(outBuffer);
-            if (len > 0){
+            if (len > 0) {
                 System.out.println(new String(outBuffer.array(), 0, len));
             }
         }

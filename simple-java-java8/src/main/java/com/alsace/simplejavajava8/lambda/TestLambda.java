@@ -22,7 +22,7 @@ public class TestLambda {
     /**
      * 不使用lambda表达式
      */
-    public void test1(){
+    public void test1() {
         Comparator<Integer> com = new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
@@ -37,7 +37,7 @@ public class TestLambda {
         ts.add(100);
 
         Iterator<Integer> iterator = ts.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
     }
@@ -45,7 +45,7 @@ public class TestLambda {
     /**
      * 使用lambda表达式
      */
-    public void test2(){
+    public void test2() {
         Comparator<Integer> com = (x, y) -> Integer.compare(x, y);
         TreeSet<Integer> ts = new TreeSet<>(com);
     }

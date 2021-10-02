@@ -33,26 +33,26 @@ public class Server {
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
         //轮询获取已经准备就绪的事件
-        while(selector.select() > 0){
+        while (selector.select() > 0) {
             //获取当前选择器上已准备就绪的事件
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             Iterator<SelectionKey> iterator = selectionKeys.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 //准备就绪的事件
                 SelectionKey selectionKey = iterator.next();
 
                 //判断是什么事件
-                if (selectionKey.isAcceptable()){
+                if (selectionKey.isAcceptable()) {
                     //若为连接事件，获取客户端连接
                     SocketChannel socketChannel = serverSocketChannel.accept();
                     socketChannel.configureBlocking(false);
                     socketChannel.register(selector, SelectionKey.OP_READ);
-                }else if (selectionKey.isReadable()){
+                } else if (selectionKey.isReadable()) {
                     //读取数据
                     SocketChannel channel = (SocketChannel) selectionKey.channel();
                     ByteBuffer buffer = ByteBuffer.allocate(1024);
                     int len;
-                    while ((len = channel.read(buffer)) > 0){
+                    while ((len = channel.read(buffer)) > 0) {
                         buffer.flip();
                         System.out.println(new String(buffer.array(), 0, len));
                         buffer.clear();

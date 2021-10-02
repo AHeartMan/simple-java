@@ -23,21 +23,21 @@ public class StreamTest3 {
             new Employee(8, "赵六", 7777.77),
             new Employee(8, "赵六", 7777.77),
             new Employee(8, "赵六", 7777.77),
-            new Employee(10, "田七",5555.55)
+            new Employee(10, "田七", 5555.55)
     );
 
     /**
      * 查找与匹配
-     *  allMatch -- 检查是否匹配所有元素
-     *  angMatch -- 检查是否至少匹配一个元素
-     *  noneMatch -- 检查是否没有匹配的元素
-     *  findFirst -- 返回第一个元素
-     *  findAny -- 返回当前流中的任意元素
-     *  count -- 返回元素中的总个数
-     *  max -- 返回流中的最大值
-     *  min -- 返回流中的最小值
+     * allMatch -- 检查是否匹配所有元素
+     * angMatch -- 检查是否至少匹配一个元素
+     * noneMatch -- 检查是否没有匹配的元素
+     * findFirst -- 返回第一个元素
+     * findAny -- 返回当前流中的任意元素
+     * count -- 返回元素中的总个数
+     * max -- 返回流中的最大值
+     * min -- 返回流中的最小值
      */
-    public void test1(){
+    public void test1() {
         boolean flag = emps.stream()
                 .allMatch(e -> e.getAge() == 8);
         Optional<Employee> first = emps.stream()
@@ -60,7 +60,7 @@ public class StreamTest3 {
      * reduce(T identity(起始值), BinaryOperator(二分操作函数))
      * reduce(BinaryOperator)
      */
-    public void test2(){
+    public void test2() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
         //原理：将初始值赋值给x, 从流中取出第一个元素1， 0 + 1 = 1, 将1赋值给x,再取出第二个元素赋值给y
         //1 + 2 = 3,依次计算
@@ -79,7 +79,7 @@ public class StreamTest3 {
      * 组函数
      * 连接 join
      */
-    public void test3(){
+    public void test3() {
         List<String> collect = emps.stream()
                 .map(Employee::getName)
                 .collect(Collectors.toList());

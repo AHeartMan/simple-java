@@ -15,6 +15,7 @@ public class ForkJoinTest2 {
 
     /**
      * 并行流，底层是fork/join
+     *
      * @param args
      */
     public static void main(String[] args) {
