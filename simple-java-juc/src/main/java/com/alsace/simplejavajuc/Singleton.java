@@ -15,7 +15,7 @@ public class Singleton {
     private Singleton instance;
 
     /**
-     * double lock to get a single instance, is not a safety method,
+     * double check to get a single instance, is not a safety method,
      *  instance = new Singleton(); is three step on cpu,
      *  # init a memory
      *  # point is to instance（when change thread, happen nullPointException）
