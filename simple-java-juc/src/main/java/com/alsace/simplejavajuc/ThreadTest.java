@@ -11,17 +11,18 @@ package com.alsace.simplejavajuc;
 public class ThreadTest {
 
     public static void main(String[] args) {
-        Thread t1= new Thread(() -> thread());
-        t1.start();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(t1.getName());
-        t1.interrupt();
+        ThreadTest t = new ThreadTest();
+//        Thread t1= new Thread(() -> thread());
+//        t1.start();
+//
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println(t1.getName());
+//        t1.interrupt();
     }
 
     private static void thread() {
