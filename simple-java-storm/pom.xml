@@ -18,7 +18,7 @@
         <storm.version>1.2.2</storm.version>
         <mysql.version>8.0.12</mysql.version>
         <druid.version>1.0.15</druid.version>
-        <kafka.version>1.0.0</kafka.version>
+        <kafka.version>3.9.2</kafka.version>
     </properties>
 
     <dependencies>
